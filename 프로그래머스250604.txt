@@ -1,0 +1,64 @@
+// 빈 문자열 ret 
+// mode 는 0,1이 있다
+
+// mode = 0 / code[idx]가 1이 아니면, idx가 짝수일 때 ret뒤에 code[idx]를 추가.
+// code[idx]가 1이면 mode를 0 -> 1로 바꿈
+
+// mode = 1 / code[idx]가 1이 아니면, idx가 홀수일 때 ret뒤에 code[idx]를 추가
+// code[idx]가 1이면 mode를 1 -> 0로 바꿈
+
+// 첨에 mode == 0 && ret == ""면 EMPTY 리턴
+
+class Solution {
+    public String solution(String code) {
+        
+        // mode 선언!!!
+        int mode = 0;
+        
+        // 빈문자열 ret 만들어놓기
+        StringBuilder ret = new StringBuilder();
+        
+        // 일단 split해서 
+        String[] codeidx = code.split("");
+
+        // for문으로 하나씩 돌리자
+        for(int i = 0; i < codeidx.length; i++ ){
+            
+            // mode == 0 분기
+            if (mode == 0){ 
+                if(!codeidx[i].equals("1")){
+                    // 인덱스 i를 나눠야함
+                    if(i % 2 == 0){
+                        ret.append(codeidx[i]);
+                    }
+                } else {
+                     mode = 1;
+                }
+            } 
+
+            // mode == 1 분기
+            else { // if 하면 안됨.. else해야함.. if하면 mode까지 다시바꿔버림
+                if(!codeidx[i].equals("1")){
+                    if(i % 2 != 0){
+                        ret.append(codeidx[i]);
+                    }
+                } else {
+                    mode = 0;
+                }
+            }
+        } // for!!!!
+        
+        // EMPTY 출력
+        // return answer.isEmpty() ? "EMPTY" : answer;
+        // if (mode == 0 && ret.length() == 0){
+        //     return "EMPTY";
+        //     //return ret.isEmpty() ? "EMPTY" : ret;
+        // }
+        
+        
+        // .toString() 출력
+        // 삼항연산자로 바꿨더니 된다.. 
+        return ret.toString().isEmpty() ? "EMPTY" : ret.toString();
+        // return ret.toString();
+    }
+}
