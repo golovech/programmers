@@ -1,0 +1,29 @@
+문제. 이어 붙인 수
+
+정수가 담긴 리스트 num_list가 주어집니다. num_list의 홀수만 순서대로 이어 붙인 수와 짝수만 순서대로 이어 붙인 수의 합을 return하도록 solution 함수를 완성해주세요.
+
+----------
+
+풀이
+
+class Solution {
+    public int solution(int[] num_list) {
+        int answer = 0;
+        StringBuilder hol = new StringBuilder();
+        StringBuilder jak = new StringBuilder();
+        
+        for(int i = 0; i < num_list.length; i++){
+            int num = num_list[i];
+            if(num % 2 != 0){
+                hol.append(num);
+            } else {
+                jak.append(num);
+            }
+        } //for 
+        // 다 이어붙인 후 합치기
+        int hol2 = Integer.parseInt(hol.toString());
+        int jak2 = Integer.parseInt(jak.toString());
+        answer = hol2 + jak2;
+        return answer;
+    }
+}
